@@ -47,3 +47,8 @@ sourceSets {
         }
     }
 }
+
+spoon {
+    processors = ['com.github.mictaege.eval.spoon.processing.FeatureProcessor']
+}
+

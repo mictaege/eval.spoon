@@ -11,12 +11,12 @@ import com.github.mictaege.eval.spoon.processing.Feature;
 public enum BearerType {
 
     @Feature(ESA)
-    ARIANE5("Ariane5", 1996, new SpaceShip(HERMES), "com/github/mictaege/eval/spoon/Ariane5.jpg"),
+    ARIANE5("Ariane5", 1996, new SpaceShip(HERMES), "com/github/mictaege/eval/spoon/example/Ariane5.jpg"),
 
     @Feature(NASA)
-    ATLAS("Atlas", 0, new SpaceShip(MERCURY), "com/github/mictaege/eval/spoon/Atlas.jpg"),
+    ATLAS("Atlas", 0, new SpaceShip(MERCURY), "com/github/mictaege/eval/spoon/example/Atlas.jpg"),
     @Feature(NASA)
-    TITAN("Titan", 0, new SpaceShip(GEMINI), "com/github/mictaege/eval/spoon/Titan.jpg");
+    TITAN("Titan", 0, new SpaceShip(GEMINI), "com/github/mictaege/eval/spoon/example/Titan.jpg");
 
     private String name;
     @Feature(ESA)
