@@ -1,0 +1,2 @@
+rootProject.name = 'eval.spoon.example'
+includeBuild '../processing'

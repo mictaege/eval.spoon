@@ -1,0 +1,49 @@
+apply plugin: 'java'
+apply plugin: 'spoon'
+
+group 'com.github.mictaege.eval'
+archivesBaseName = project.name
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'fr.inria.gforge.spoon', name: 'spoon-gradle-plugin', version:'1.1'
+        classpath group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.12.2'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "fr.inria.gforge.spoon:spoon-core:5.9.0"
+    compile "com.github.mictaege.eval:eval.spoon.processing:1.0-SNAPSHOT"
+    testCompile "junit:junit:4.12"
+    testCompile "org.mockito:mockito-core:2.2.11"
+    testCompile "com.github.mictaege.eval:eval.spoon.processing:1.0-SNAPSHOT"
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+    test {
+        java {
+            srcDir 'src/test/java '
+        }
+        resources {
+            srcDir 'src/test/resources'
+        }
+    }
+}
