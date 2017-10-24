@@ -3,7 +3,7 @@ package com.github.mictaege.eval.spoon.processing;
 public enum FeatureType {
 
     ESA(true),
-    NASA(true);
+    NASA(false);
 
     private final boolean active;
 
