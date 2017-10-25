@@ -1,19 +1,27 @@
 package com.github.mictaege.eval.spoon.example;
 
-import static com.github.mictaege.eval.spoon.processing.FeatureType.ESA;
-import static com.github.mictaege.eval.spoon.processing.FeatureType.NASA;
+import static com.github.mictaege.eval.spoon.processing.Variant.ESA;
+import static com.github.mictaege.eval.spoon.processing.Variant.NASA;
+import static com.github.mictaege.eval.spoon.processing.Variant.ROSKOSMOS;
 
-import com.github.mictaege.eval.spoon.processing.Feature;
+import com.github.mictaege.eval.spoon.processing.OnlyIf;
 
 public enum SpaceShipType {
 
-    @Feature(ESA)
+    @OnlyIf(ESA)
     HERMES("Hermes"),
 
-    @Feature(NASA)
+    @OnlyIf(NASA)
     MERCURY("Mercury"),
-    @Feature(NASA)
-    GEMINI("Gemini");
+    @OnlyIf(NASA)
+    GEMINI("Gemini"),
+
+    @OnlyIf(ROSKOSMOS)
+    WOSTOK("Wostok"),
+    @OnlyIf(ROSKOSMOS)
+    SOJUS("Sojus");
+
+
 
     private String name;
 

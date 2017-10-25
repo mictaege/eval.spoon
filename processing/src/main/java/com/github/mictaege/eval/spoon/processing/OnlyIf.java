@@ -13,8 +13,8 @@ import static java.lang.annotation.ElementType.TYPE;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({TYPE, FIELD, CONSTRUCTOR, METHOD})
-public @interface Features {
+public @interface OnlyIf {
 
-    Feature[] value();
+    Variant[] value();
 
 }

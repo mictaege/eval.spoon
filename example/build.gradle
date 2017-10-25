@@ -50,9 +50,10 @@ sourceSets {
 
 spoon {
 
-    processors = ['com.github.mictaege.eval.spoon.processing.FeatureTypeProcessor',
-                  'com.github.mictaege.eval.spoon.processing.FeatureFieldProcessor',
-                  'com.github.mictaege.eval.spoon.processing.FeatureMethodProcessor',
-                  'com.github.mictaege.eval.spoon.processing.FeatureConstructorProcessor']
+    processors = ['com.github.mictaege.eval.spoon.processing.ForkMethodProcessor',
+                  'com.github.mictaege.eval.spoon.processing.OnlyIfClassProcessor',
+                  'com.github.mictaege.eval.spoon.processing.OnlyIfFieldProcessor',
+                  'com.github.mictaege.eval.spoon.processing.OnlyIfMethodProcessor',
+                  'com.github.mictaege.eval.spoon.processing.OnlyIfConstructorProcessor']
 }
 
