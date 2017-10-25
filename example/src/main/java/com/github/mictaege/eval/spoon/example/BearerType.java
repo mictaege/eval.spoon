@@ -14,9 +14,9 @@ public enum BearerType {
     ARIANE5("Ariane5", 1996, new SpaceShip(HERMES), "com/github/mictaege/eval/spoon/example/Ariane5.jpg"),
 
     @Feature(NASA)
-    ATLAS("Atlas", 0, new SpaceShip(MERCURY), "com/github/mictaege/eval/spoon/example/Atlas.jpg"),
+    ATLAS("Atlas", new SpaceShip(MERCURY), "com/github/mictaege/eval/spoon/example/Atlas.jpg"),
     @Feature(NASA)
-    TITAN("Titan", 0, new SpaceShip(GEMINI), "com/github/mictaege/eval/spoon/example/Titan.jpg");
+    TITAN("Titan", new SpaceShip(GEMINI), "com/github/mictaege/eval/spoon/example/Titan.jpg");
 
     private String name;
     @Feature(ESA)
@@ -24,9 +24,17 @@ public enum BearerType {
     private SpaceShip spaceShip;
     private String img;
 
-    BearerType(final String name, @Feature(ESA)final int constructionYear, final SpaceShip spaceShip, final String img) {
+    @Feature(ESA)
+    BearerType(final String name, final int constructionYear, final SpaceShip spaceShip, final String img) {
         this.name = name;
         this.constructionYear = constructionYear;
+        this.spaceShip = spaceShip;
+        this.img = img;
+    }
+
+    @Feature(NASA)
+    BearerType(final String name, final SpaceShip spaceShip, final String img) {
+        this.name = name;
         this.spaceShip = spaceShip;
         this.img = img;
     }
