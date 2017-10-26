@@ -19,6 +19,7 @@ public class ForkMethodProcessor extends AbstractAnnotationProcessor<Fork, CtMet
                     .orElseThrow(() -> new IllegalStateException("[ERROR] The given alternative method " + altName + " could not be found"));
             out.println("[Spoon] Replace method " + method.getDeclaringType().getSimpleName() + "#" + method.getSimpleName() + " with #" + altName);
             method.setBody(alternative.getBody());
+            alternative.delete();
         }
     }
 
