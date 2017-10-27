@@ -1,10 +1,10 @@
 package com.github.mictaege.eval.spoon.example;
 
+import com.github.mictaege.eval.spoon.processing.OnlyIf;
+
 import static com.github.mictaege.eval.spoon.processing.Variant.ESA;
 import static com.github.mictaege.eval.spoon.processing.Variant.NASA;
 import static com.github.mictaege.eval.spoon.processing.Variant.ROSKOSMOS;
-
-import com.github.mictaege.eval.spoon.processing.OnlyIf;
 
 public enum SpaceShipType {
 

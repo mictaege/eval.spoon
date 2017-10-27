@@ -1,7 +1,7 @@
 package com.github.mictaege.eval.spoon.example;
 
-import com.github.mictaege.eval.spoon.processing.OnlyIf;
 import com.github.mictaege.eval.spoon.processing.Fork;
+import com.github.mictaege.eval.spoon.processing.OnlyIf;
 import org.junit.Test;
 
 import static com.github.mictaege.eval.spoon.example.BearerType.ARIANE5;
