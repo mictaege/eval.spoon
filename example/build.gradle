@@ -72,3 +72,35 @@ spoon {
 }
 
 mainClassName = "com.github.mictaege.eval.spoon.example.TowerControlApp"
+
+
+task variantEsa() {
+    doLast{
+        def file = new File("gradle.properties")
+        if(!file.exists()) {
+            file.createNewFile()
+        }
+        file.text = "systemProp.variant=ESA"
+    }
+}
+
+task variantNasa() {
+    doLast {
+        def file = new File("gradle.properties")
+        if(!file.exists()) {
+            file.createNewFile()
+        }
+        file.text = "systemProp.variant=NASA"
+    }
+
+}
+
+task variantRoskosmos() {
+    doLast {
+        def file = new File("gradle.properties")
+        if(!file.exists()) {
+            file.createNewFile()
+        }
+        file.text = "systemProp.variant=ROSKOSMOS"
+    }
+}
