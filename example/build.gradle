@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'spoon'
 apply plugin: 'application'
+apply plugin: 'idea'
 
 group 'com.github.mictaege.eval'
 archivesBaseName = project.name
@@ -47,6 +48,14 @@ sourceSets {
         resources {
             srcDir 'src/test/resources'
         }
+    }
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir file('build/classes/main')
+        testOutputDir file('build/classes/test')
     }
 }
 
