@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'spoon'
+apply plugin: 'application'
 
 group 'com.github.mictaege.eval'
 archivesBaseName = project.name
@@ -25,6 +26,8 @@ dependencies {
     compile ('com.github.mictaege.eval:eval.spoon.processing:1.0-SNAPSHOT') {
         exclude group: "fr.inria.gforge.spoon", module : "spoon-core"
     }
+    //compile "no.tornado:tornadofx:1.5.8"
+    compile "de.jensd:fontawesomefx:8.9"
     testCompile "junit:junit:4.12"
     testCompile "org.mockito:mockito-core:2.2.11"
 }
@@ -58,3 +61,4 @@ spoon {
                   'com.github.mictaege.eval.spoon.processing.OnlyIfConstructorProcessor']
 }
 
+mainClassName = "com.github.mictaege.eval.spoon.example.TowerControlApp"
