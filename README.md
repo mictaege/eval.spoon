@@ -57,4 +57,4 @@ The next important thing is that the compiler output path must point to ```./bui
 
 If all this settings are done you can configure a _Run Configuration_ for the examples main class _TowerControlApp_. As in gradle you have to select the flavor before the build happens:
 
-![Project Structure](./doc/RunConfiguration.png.png)
+![Run Configuration](./doc/RunConfiguration.png)
