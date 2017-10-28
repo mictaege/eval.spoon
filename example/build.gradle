@@ -73,6 +73,14 @@ spoon {
 
 mainClassName = "com.github.mictaege.eval.spoon.example.TowerControlApp"
 
+task noVariant() {
+    doLast{
+        def file = new File("gradle.properties")
+        if(file.exists()) {
+            file.delete()
+        }
+    }
+}
 
 task variantEsa() {
     doLast{
