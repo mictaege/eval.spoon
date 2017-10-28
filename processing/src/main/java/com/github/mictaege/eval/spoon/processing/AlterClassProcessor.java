@@ -11,7 +11,7 @@ public class AlterClassProcessor extends AbstractAnnotationProcessor<Alter, CtCl
     @Override
     public void process(final Alter annotation, final CtClass<?> clazz) {
         final Variant feature = annotation.ifActive();
-        if (feature.active()) {
+        if (Variant.anyVariant() && feature.active()) {
             final String altClass = annotation.with();
             out.println("[Spoon] Replace class " + clazz.getSimpleName() + " with " + altClass);
 

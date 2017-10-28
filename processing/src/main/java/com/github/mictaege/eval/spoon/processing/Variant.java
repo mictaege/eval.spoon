@@ -11,7 +11,13 @@ public enum Variant {
 
     public boolean active() {
         return ofNullable(getProperty("variant"))
-                .map(p -> p.equals(this.name()))
+                .map(p -> p.length() == 0 || p.equals(this.name()))
+                .orElse(true);
+    }
+
+    public static boolean anyVariant() {
+        return ofNullable(getProperty("variant"))
+                .map(p -> p.length() > 0 )
                 .orElse(false);
     }
 
