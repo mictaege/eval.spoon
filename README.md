@@ -27,9 +27,11 @@ To run or build the application with gradle the flavor has to be selected before
 
 Go to the _example_ directory (```cd example```)
 and type
-- ``` gradle variantEsa run``` for _ESA_
-- ``` gradle variantNasa run``` for _NASA_
-- ``` gradle variantRoskosmos run``` for _ROSKOSMOS_
+- ``` gradle variantEsa``` for selecting _ESA_
+- ``` gradle variantNasa``` for selecting _NASA_
+- ``` gradle variantRoskosmos``` for selecting _ROSKOSMOS_
+
+and then type ```gradle clean run``` or ```gradle clean build```
 
 ## IntelliJ
 
@@ -55,6 +57,6 @@ The next important thing is that the compiler output path must point to ```./bui
 
 ![Project Structure](./doc/ProjectStructure.png)
 
-If all this settings are done you can configure a _Run Configuration_ for the examples main class _TowerControlApp_. As in gradle you have to select the flavor before the build happens:
+If all this settings are done you can configure a _Run Configuration_ for the examples main class _TowerControlApp_. As in gradle you have to select the flavor and to clean before the build happens:
 
 ![Run Configuration](./doc/RunConfiguration.png)
