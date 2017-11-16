@@ -12,9 +12,10 @@ sourceCompatibility = 1.8
 buildscript {
     repositories {
         mavenCentral()
+        mavenLocal()
     }
     dependencies {
-        classpath group: 'com.github.mictaege', name: 'spoon-gradle-plugin', version:'1.0'
+        classpath group: 'com.github.mictaege', name: 'spoon-gradle-plugin', version:'1.2'
         classpath group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.12.2'
     }
 }
@@ -23,17 +24,68 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    compile ('com.github.mictaege.eval:eval.spoon.processing:1.0-SNAPSHOT') {
-        exclude group: "fr.inria.gforge.spoon", module : "spoon-core"
-    }
-    compile "de.jensd:fontawesomefx:8.9"
-    testCompile "junit:junit:4.12"
-    testCompile "org.mockito:mockito-core:2.2.11"
-}
-
 sourceSets {
+    model {
+        java {
+            srcDir 'src/model/java'
+        }
+        resources {
+            srcDir 'src/model/resources'
+        }
+    }
+    modelTest {
+        compileClasspath += model.runtimeClasspath
+        runtimeClasspath += model.runtimeClasspath
+        java {
+            srcDir 'src/modelTest/java '
+        }
+        resources {
+            srcDir 'src/modelTest/resources'
+        }
+    }
+    beans {
+        compileClasspath += model.runtimeClasspath
+        runtimeClasspath += model.runtimeClasspath
+        java {
+            srcDir 'src/beans/java'
+        }
+        resources {
+            srcDir 'src/beans/resources'
+        }
+    }
+    beansTest {
+        compileClasspath += beans.runtimeClasspath + modelTest.runtimeClasspath
+        runtimeClasspath += beans.runtimeClasspath + modelTest.runtimeClasspath
+        java {
+            srcDir 'src/beansTest/java'
+        }
+        resources {
+            srcDir 'src/beansTest/resources'
+        }
+    }
+    ui {
+        compileClasspath += beans.runtimeClasspath
+        runtimeClasspath += beans.runtimeClasspath
+        java {
+            srcDir 'src/ui/java'
+        }
+        resources {
+            srcDir 'src/ui/resources'
+        }
+    }
+    uiTest {
+        compileClasspath += ui.runtimeClasspath + beansTest.runtimeClasspath
+        runtimeClasspath += ui.runtimeClasspath + beansTest.runtimeClasspath
+        java {
+            srcDir 'src/uiTest/java'
+        }
+        resources {
+            srcDir 'src/uiTest/resources'
+        }
+    }
     main {
+        compileClasspath += ui.runtimeClasspath
+        runtimeClasspath += ui.runtimeClasspath
         java {
             srcDir 'src/main/java'
         }
@@ -42,8 +94,10 @@ sourceSets {
         }
     }
     test {
+        compileClasspath += main.runtimeClasspath + uiTest.runtimeClasspath
+        runtimeClasspath += main.runtimeClasspath + uiTest.runtimeClasspath
         java {
-            srcDir 'src/test/java '
+            srcDir 'src/test/java'
         }
         resources {
             srcDir 'src/test/resources'
@@ -51,9 +105,29 @@ sourceSets {
     }
 }
 
+tasks.compileJava.dependsOn tasks.compileUiJava
+tasks.compileUiJava.dependsOn tasks.compileBeansJava
+tasks.compileBeansJava.dependsOn tasks.compileModelJava
+
+tasks.compileTestJava.dependsOn tasks.compileUiTestJava
+tasks.compileUiTestJava.dependsOn tasks.compileBeansTestJava
+tasks.compileBeansTestJava.dependsOn tasks.compileModelTestJava
+
+dependencies {
+    modelCompile ('com.github.mictaege.eval:eval.spoon.processing:1.0-SNAPSHOT') {
+        exclude group: "fr.inria.gforge.spoon", module : "spoon-core"
+    }
+    modelCompile "de.jensd:fontawesomefx:8.9"
+    modelTestCompile "junit:junit:4.12"
+    modelTestCompile "org.mockito:mockito-core:2.2.11"
+}
+
 idea {
     module {
         inheritOutputDirs = false
+        testSourceDirs += file('modelTest')
+        testSourceDirs += file('beansTest')
+        testSourceDirs += file('uiTest')
         outputDir file('build/classes/main')
         testOutputDir file('build/classes/test')
     }
@@ -69,9 +143,22 @@ spoon {
                     'com.github.mictaege.eval.spoon.processing.OnlyIfMethodProcessor',
                     'com.github.mictaege.eval.spoon.processing.OnlyIfConstructorProcessor'
                 ]
+
+    exclude = ['main', 'test']
 }
 
-mainClassName = "com.github.mictaege.eval.spoon.example.TowerControlApp"
+mainClassName = "com.github.mictaege.eval.spoon.example.TowerControlMain"
+
+jar {
+    from sourceSets.model.output
+    from sourceSets.beans.output
+    from sourceSets.ui.output
+    from sourceSets.main.output
+}
+
+run {
+    classpath sourceSets.main.runtimeClasspath
+}
 
 task noVariant() {
     doLast{
