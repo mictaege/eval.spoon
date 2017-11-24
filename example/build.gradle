@@ -15,8 +15,8 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath group: 'com.github.mictaege', name: 'spoon-gradle-plugin', version:'1.4'
-        classpath group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.12.2'
+        classpath group: 'com.github.mictaege', name: 'spoon-gradle-plugin', version:'1.5'
+        classpath group: 'org.eclipse.tycho', name: 'org.eclipse.jdt.core', version: '3.13.50.v20171007-0855'
     }
 }
 
@@ -145,6 +145,8 @@ spoon {
                 ]
 
     exclude = ['main', 'test']
+    compliance = 8
+    fileFilter = { File src -> src.text.contains("com.github.mictaege.eval.spoon.processing.Variant") }
 }
 
 mainClassName = "com.github.mictaege.eval.spoon.example.TowerControlMain"

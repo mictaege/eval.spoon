@@ -10,3 +10,5 @@ out/
 */*.iml
 
 */gradle.properties
+
+example/build
