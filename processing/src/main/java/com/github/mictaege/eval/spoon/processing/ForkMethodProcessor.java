@@ -9,8 +9,8 @@ public class ForkMethodProcessor extends AbstractAnnotationProcessor<Fork, CtMet
 
     @Override
     public void process(final Fork annotation, final CtMethod<?> method) {
-        final Variant feature = annotation.ifActive();
-        if (Variant.anyVariant() && feature.active()) {
+        final Variant flavour = annotation.ifActive();
+        if (Variant.anyVariant() && flavour.active()) {
             final String altName = annotation.to();
             final CtMethod<?> alternative = method.getDeclaringType().getMethodsByName(altName).stream()
                     .findFirst()
