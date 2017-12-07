@@ -12,8 +12,8 @@ public class OnlyIfConstructorProcessor extends AbstractAnnotationProcessor<Only
 
     @Override
     public void process(final OnlyIf annotation, final CtConstructor<?> constructor) {
-        final List<Variant> features = asList(annotation.value());
-        if (features.stream().noneMatch(Variant::active)) {
+        final List<Variant> flavour = asList(annotation.value());
+        if (flavour.stream().noneMatch(Variant::active)) {
             out.println("[Spoon] Remove constructor " + constructor.getDeclaringType().getSimpleName());
             constructor.delete();
         }

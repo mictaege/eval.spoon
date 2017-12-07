@@ -13,9 +13,9 @@ import static com.github.mictaege.eval.spoon.processing.Variant.NASA;
 import static com.github.mictaege.eval.spoon.processing.Variant.ROSKOSMOS;
 import static java.util.Arrays.asList;
 
-@Alter(ifActive = ESA, with = "EsaDao", nested = true)
-@Alter(ifActive = NASA, with = "NasaDao", nested = true)
-@Alter(ifActive = ROSKOSMOS, with = "RoskosmosDao")
+@Alter(with = "EsaDao", ifActive = ESA)
+@Alter(with = "NasaDao", ifActive = NASA)
+@Alter(with = "RoskosmosDao", ifActive = ROSKOSMOS)
 public class Dao implements DaoIF {
 
     @Override
@@ -23,19 +23,19 @@ public class Dao implements DaoIF {
         throw new IllegalStateException("Not implemented.");
     }
 
-    @OnlyIf(ESA)
-    static class EsaDao implements DaoIF {
-        public List<BearerType> findBearers() {
-            return asList(ARIANE5);
-        }
-    }
+}
 
-    @OnlyIf(NASA)
-    static class NasaDao implements DaoIF {
-        public List<BearerType> findBearers() {
-            return asList(ATLAS, TITAN);
-        }
+@OnlyIf(ESA)
+class EsaDao implements DaoIF {
+    public List<BearerType> findBearers() {
+        return asList(ARIANE5);
     }
+}
 
+@OnlyIf(NASA)
+class NasaDao implements DaoIF {
+    public List<BearerType> findBearers() {
+        return asList(ATLAS, TITAN);
+    }
 }
 

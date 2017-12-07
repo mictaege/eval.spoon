@@ -12,8 +12,8 @@ public class OnlyIfFieldProcessor extends AbstractAnnotationProcessor<OnlyIf, Ct
 
     @Override
     public void process(final OnlyIf annotation, final CtField<?> field) {
-        final List<Variant> features = asList(annotation.value());
-        if (features.stream().noneMatch(Variant::active)) {
+        final List<Variant> flavour = asList(annotation.value());
+        if (flavour.stream().noneMatch(Variant::active)) {
             out.println("[Spoon] Remove field " + field.getDeclaringType().getSimpleName() + "#" + field.getSimpleName());
             field.delete();
         }

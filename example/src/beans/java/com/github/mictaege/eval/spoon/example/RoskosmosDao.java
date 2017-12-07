@@ -11,7 +11,10 @@ import static java.util.Arrays.asList;
 
 @OnlyIf(ROSKOSMOS)
 class RoskosmosDao implements DaoIF {
+
+    private List<BearerType> list = asList(WOSTOK, SOJUS);
+
     public List<BearerType> findBearers() {
-        return asList(WOSTOK, SOJUS);
+        return list;
     }
 }
