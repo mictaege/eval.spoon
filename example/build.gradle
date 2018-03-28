@@ -19,7 +19,7 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath group: 'com.github.mictaege', name: 'spoon-gradle-plugin', version:'1.6'
+        classpath group: 'com.github.mictaege', name: 'spoon-gradle-plugin', version:'2018.1'
         classpath group: 'org.eclipse.tycho', name: 'org.eclipse.jdt.core', version: '3.13.50.v20171007-0855'
     }
 }
