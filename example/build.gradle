@@ -5,12 +5,12 @@ apply plugin: 'idea'
 
 group 'com.github.mictaege.eval'
 archivesBaseName = project.name
-version '2021.1'
+version '2021.2'
 
 sourceCompatibility = 1.8
 
 wrapper {
-    gradleVersion = "6.7"
+    gradleVersion = "7.0.1"
     distributionType = Wrapper.DistributionType.ALL
 }
 
@@ -20,7 +20,7 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath group: 'com.github.mictaege', name: 'spoon-gradle-plugin', version:'2021.1'
+        classpath group: 'com.github.mictaege', name: 'spoon-gradle-plugin', version:'2021.2'
         classpath group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.25.0'
     }
 }
@@ -118,13 +118,17 @@ tasks.compileTestJava.dependsOn tasks.compileUiTestJava
 tasks.compileUiTestJava.dependsOn tasks.compileBeansTestJava
 tasks.compileBeansTestJava.dependsOn tasks.compileModelTestJava
 
+tasks.withType(Copy){
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+}
+
 dependencies {
-    modelCompile ('com.github.mictaege.eval:eval.spoon.processing:2021.1') {
+    modelImplementation ('com.github.mictaege.eval:eval.spoon.processing:2021.2') {
         exclude group: "fr.inria.gforge.spoon", module : "spoon-core"
     }
-    modelCompile "de.jensd:fontawesomefx:8.9"
-    modelTestCompile "junit:junit:4.12"
-    modelTestCompile "org.mockito:mockito-core:2.2.11"
+    modelImplementation "de.jensd:fontawesomefx:8.9"
+    modelTestImplementation "junit:junit:4.12"
+    modelTestImplementation "org.mockito:mockito-core:2.2.11"
 }
 
 idea {
