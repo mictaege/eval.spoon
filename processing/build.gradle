@@ -3,7 +3,7 @@ apply plugin: 'idea'
 
 group 'com.github.mictaege.eval'
 archivesBaseName = project.name
-version '2021.3'
+version '2021.4'
 
 sourceCompatibility = 1.8
 

@@ -5,7 +5,7 @@ apply plugin: 'idea'
 
 group 'com.github.mictaege.eval'
 archivesBaseName = project.name
-version '2021.3'
+version '2021.4'
 
 sourceCompatibility = 1.8
 
@@ -20,7 +20,7 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath group: 'com.github.mictaege', name: 'spoon-gradle-plugin', version:'2021.3'
+        classpath group: 'com.github.mictaege', name: 'spoon-gradle-plugin', version:'2021.4'
         classpath group: 'org.eclipse.jdt', name: 'org.eclipse.jdt.core', version: '3.25.0'
     }
 }
@@ -123,7 +123,7 @@ tasks.withType(Copy){
 }
 
 dependencies {
-    modelImplementation ('com.github.mictaege.eval:eval.spoon.processing:2021.3') {
+    modelImplementation ('com.github.mictaege.eval:eval.spoon.processing:2021.4') {
         exclude group: "fr.inria.gforge.spoon", module : "spoon-core"
     }
     modelImplementation "de.jensd:fontawesomefx:8.9"
